@@ -1,4 +1,4 @@
-package de.hs_mannheim_ib.tpe.chr_luk.uebung_04;
+package de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt;
 
 import java.util.List;
 
