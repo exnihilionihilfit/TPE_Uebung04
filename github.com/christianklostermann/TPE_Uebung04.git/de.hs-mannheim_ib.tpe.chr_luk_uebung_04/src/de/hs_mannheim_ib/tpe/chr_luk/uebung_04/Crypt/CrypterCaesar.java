@@ -7,7 +7,7 @@ import java.util.function.*;
 public class CrypterCaesar implements Crypter {
 
 	private final char key;
-	private final int numShift;
+	private int numShift;
 
 	Function<String, String> encryp = (x) -> {
 		String txt = "";
@@ -28,13 +28,17 @@ public class CrypterCaesar implements Crypter {
 		return txt;
 	};
 
-	BiConsumer<String, String> biCon = (x, y) -> {
 
-	};
 
 	public CrypterCaesar(String key) {
 		this.key = key.charAt(0);
 		this.numShift = ((int) this.key) - 65; // start with char 'A'
+		if (this.numShift > 127) {
+			this.numShift -= 127;
+		}
+		if (this.numShift < 0) {
+			this.numShift += 127;
+		}
 	}
 
 	@Override

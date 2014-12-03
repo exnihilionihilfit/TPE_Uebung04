@@ -10,32 +10,50 @@ import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.Crypter;
 import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterException;
 import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterFactory;
 
-
-
 public class JUnit {
-	
-	@Test
-	public void test(){
-		
+
+	public void test() {
+
 		CrypterFactory crypFac = new CrypterFactory();
-		
+
 		Crypter cryp = crypFac.createCrypter(CryptTypen.CAESAR, "B");
-		
+
 		try {
-	        System.out.println(cryp.encrypt("HALLO"));
-	        List<String> testList = new ArrayList<>();
-	        testList.add("Blub");
-	        testList.add("ENIGMA");
-	        
-	        List<String> cryptoList= cryp.encrypt(testList);
-	        System.out.println(cryptoList);
-	        
-	        System.out.println(cryp.decrypt(cryptoList));
-	        
-        } catch (CrypterException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-        }
-		
+			System.out.println(cryp.encrypt("HALLO"));
+			List<String> testList = new ArrayList<>();
+			testList.add("Blub");
+			testList.add("ENIGMA");
+
+			List<String> cryptoList = cryp.encrypt(testList);
+			System.out.println(cryptoList);
+
+			System.out.println(cryp.decrypt(cryptoList));
+
+		} catch (CrypterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void testCrypSub() {
+		CrypterFactory crypFac = new CrypterFactory();
+		Crypter cryp = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
+		        "BCDEFGHIJKLMNOPQRSTUVWXYZA");
+		System.out.println("Sub");
+		try {
+
+			List<String> testList = new ArrayList<>();
+			testList.add("AAAHAB");
+			testList.add("Baum");
+			System.out.println(cryp.encrypt("Baum"));
+			String tmp = cryp.encrypt("Baum");
+			System.out.println(cryp.decrypt(tmp));
+
+		} catch (CrypterException e) {
+			System.out.println("test");
+			e.printStackTrace();
+		}
 	}
 }
