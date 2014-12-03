@@ -55,27 +55,22 @@ public class CrypterXOR implements Crypter {
 	}
 
 	@Override
-	public String encrypt(String message) throws CrypterException {
-		// TODO Auto-generated method stub
+	public String encrypt(String message) throws CrypterException {		
 		return this.encryp.apply(message);
 	}
 
 	@Override
-	public List<String> encrypt(List<String> messages) throws CrypterException {
-		// TODO Auto-generated method stub
+	public List<String> encrypt(List<String> messages) throws CrypterException {	
 		return null;
 	}
 
 	@Override
 	public String decrypt(String cypherText) throws CrypterException {
-
 		return this.decryp.apply(cypherText);
 	}
-
 	@Override
 	public List<String> decrypt(List<String> cypherTexte)
-	        throws CrypterException {
-		// TODO Auto-generated method stub
+	        throws CrypterException {	
 		return null;
 	}
 }

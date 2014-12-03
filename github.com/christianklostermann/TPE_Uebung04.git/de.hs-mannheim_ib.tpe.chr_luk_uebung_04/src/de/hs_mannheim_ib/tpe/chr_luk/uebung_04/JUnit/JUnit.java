@@ -25,7 +25,7 @@ public class JUnit {
 			System.out.println(cryptoList);
 			System.out.println(cryp.decrypt(cryptoList));
 
-		} catch (CrypterException e) {		
+		} catch (CrypterException e) {
 			e.printStackTrace();
 		}
 	}
@@ -40,27 +40,28 @@ public class JUnit {
 			List<String> testList = new ArrayList<>();
 			testList.add("AAAHAB");
 			testList.add("Baum");
-		//	System.out.println(cryp.encrypt("Baum"));
+			// System.out.println(cryp.encrypt("Baum"));
 			String tmp = cryp.encrypt("Baum");
-		//	System.out.println(cryp.decrypt(tmp));
+			// System.out.println(cryp.decrypt(tmp));
 		} catch (CrypterException e) {
 			System.out.println("test");
 			e.printStackTrace();
 		}
 	}
+
 	@Test
-	public void testCrypXor(){
+	public void testCrypXor() {
 		CrypterFactory crypFac = new CrypterFactory();
 		Crypter cryp = crypFac.createCrypter(CryptTypen.XOR,
 		        "BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_");
-		
+
 		try {
-	        String test = cryp.encrypt("Hm ja , schreib mit reicht doch ? oder? he‰‰‰‰ hakehrkwehr grunz grunz");
-	        System.out.println(test);
-	        System.out.println(cryp.decrypt(test));
-        } catch (CrypterException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-        }
+			String test = cryp.encrypt("Three Rings for the Elven-kings under the sky,Seven for the Dwarf-lords in their halls of stone,Nine for Mortal Men doomed to die,One for the Dark Lord on his dark throneIn the Land of Mordor where the Shadows lie.One Ring to rule them all, One Ring to find them,One Ring to bring them all and in the darkness bind themIn the Land of Mordor where the Shadows lie.");
+			System.out.println(test);
+			System.out.println(cryp.decrypt(test));
+		} catch (CrypterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
