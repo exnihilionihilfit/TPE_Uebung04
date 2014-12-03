@@ -5,66 +5,77 @@ import java.util.Deque;
 import java.util.List;
 import java.util.function.Function;
 
-public class CrypterXOR implements Crypter{
-	
+public class CrypterXOR implements Crypter {
+
 	private Deque<Integer> keyDeque;
+	private String key;
 	
 	Function<String, String> encryp = (x) -> {
-		
-		  int pointer = 0;
-		   for(int i = 0; i < x.length();i++ ){
-			   keyDeque.iterator().next() 
-			   System.out.println(this.keyDeque.iterator().next());
-		   }
-		
-		
-		String erg="";
-	
+		String erg = "";
+		int tmp = 0;
+		for (int i = 0; i < x.length(); i++) {
+			tmp = keyDeque.getFirst();
+			keyDeque.removeFirst();
+			keyDeque.addLast(tmp);
+			erg += (char) ((int) x.charAt(i) ^ tmp);
+		}
+		this.addToDeque(key);
 		return erg;
 	};
 	Function<String, String> decryp = (x) -> {
-		String erg="";
-	
-			return erg;
+		String erg = "";
+		int tmp = 0;
+		for (int i = 0; i < x.length(); i++) {
+			tmp = keyDeque.getFirst();
+			keyDeque.removeFirst();
+			keyDeque.addLast(tmp);
+			erg += (char) ((int) x.charAt(i) ^ tmp);
+		}
+		this.addToDeque(key);
+		return erg;
 	};
-	
 
-	public CrypterXOR(String key) {	
+
+
+	public CrypterXOR(String key) {
+		this.key = key;
 		this.keyDeque = new ArrayDeque<Integer>();
-	   this.addToDeque(key);
+		this.addToDeque(key);
 
-    }
-	private void addToDeque(String key){
-	   
-	   for(char intValue:key.toCharArray()){
-		   keyDeque.add((int) intValue +65);
-		   
-	   }
-	
+	}
+
+	private void addToDeque(String key) {
+		keyDeque.clear();
+
+		for (char intValue : key.toCharArray()) {
+			keyDeque.add((int) intValue + 65);
+
+		}
+
 	}
 
 	@Override
-    public String encrypt(String message) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
+	public String encrypt(String message) throws CrypterException {
+		// TODO Auto-generated method stub
+		return this.encryp.apply(message);
+	}
 
 	@Override
-    public List<String> encrypt(List<String> messages) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
+	public List<String> encrypt(List<String> messages) throws CrypterException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-    public String decrypt(String cypherText) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
+	public String decrypt(String cypherText) throws CrypterException {
+
+		return this.decryp.apply(cypherText);
+	}
 
 	@Override
-    public List<String> decrypt(List<String> cypherTexte)
-            throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
+	public List<String> decrypt(List<String> cypherTexte)
+	        throws CrypterException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
