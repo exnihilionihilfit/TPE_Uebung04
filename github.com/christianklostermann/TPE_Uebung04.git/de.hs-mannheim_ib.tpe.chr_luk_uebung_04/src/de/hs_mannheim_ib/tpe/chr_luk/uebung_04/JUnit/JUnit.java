@@ -55,5 +55,13 @@ public class JUnit {
 			System.out.println("test");
 			e.printStackTrace();
 		}
+		
+		System.out.println( 3^5);
+	}
+	@Test
+	public void testCrypXor(){
+		CrypterFactory crypFac = new CrypterFactory();
+		Crypter cryp = crypFac.createCrypter(CryptTypen.XOR,
+		        "BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_");
 	}
 }

@@ -39,7 +39,18 @@ public class CrypterFactory {
 				}
 				return new CrypterSubstitution(key);
 			case XOR:
-				return new Xor(key);
+				// key nur 32 Zeichen
+				try {
+				
+					if (key.length() != 32 && key.length() != 0) {
+						throw new IllegalKeyException("Key für XOR ungleich 26");
+					}
+
+				} catch (IllegalKeyException e) {
+					System.out.println("Key für XOR ungleich 32");
+					key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@[\\]^_";
+				}
+				return new CrypterXOR(key);
 			default:
 				break;
 			}

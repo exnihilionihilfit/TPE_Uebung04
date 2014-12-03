@@ -25,12 +25,10 @@ public class CrypterSubstitution implements Crypter {
 	};
 	public CrypterSubstitution(String key) {
 		this.key = key;
-
 	}
 
 	@Override
 	public String encrypt(String message) throws CrypterException {
-
 		return this.encryp.apply(message);
 	}
 
@@ -50,9 +48,11 @@ public class CrypterSubstitution implements Crypter {
 
 	@Override
 	public List<String> decrypt(List<String> cypherTexte)
-	        throws CrypterException {
-		// TODO Auto-generated method stub
-		return null;
+	        throws CrypterException {		List<String> list = new ArrayList<>();
+			for(String msg:cypherTexte){
+				list.add(this.decrypt(msg));
+			}
+			return list;
 	}
 
 }
