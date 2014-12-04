@@ -56,7 +56,7 @@ public class JUnit {
 		        "BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_");
 
 		try {
-			String test = cryp.encrypt("Three Rings for the Elven-kings under the sky,Seven for the Dwarf-lords in their halls of stone,Nine for Mortal Men doomed to die,One for the Dark Lord on his dark throneIn the Land of Mordor where the Shadows lie.One Ring to rule them all, One Ring to find them,One Ring to bring them all and in the darkness bind themIn the Land of Mordor where the Shadows lie.");
+			String test = cryp.encrypt("Three  to die,One for the Dark Lord on his dark throneIn the Land of Mordor where the Shadows lie.One Ring to rule them all, One Ring to find them,One Ring to bring them all and in the darkness bind themIn the Land of Mordor where the Shadows lie.");
 			System.out.println(test);
 			System.out.println(cryp.decrypt(test));
 		} catch (CrypterException e) {

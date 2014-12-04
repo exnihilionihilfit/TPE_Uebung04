@@ -22,9 +22,9 @@ public class CrypterFactory {
 				}
 				return new CrypterCaesar(key);
 			case NULL:
-				return new Null(key);
+				return new CrypterNull(key);
 			case REVERSE:
-				return new Reverse(key);
+				return new CrypterReverse(key);
 			case SUBSTITUTION:
 				// key nur 26 Zeichen
 				try {
