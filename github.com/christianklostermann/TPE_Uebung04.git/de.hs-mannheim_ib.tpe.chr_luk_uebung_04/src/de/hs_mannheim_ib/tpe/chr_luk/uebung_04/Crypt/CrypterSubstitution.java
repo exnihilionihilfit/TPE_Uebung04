@@ -1,30 +1,55 @@
 package de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
 public class CrypterSubstitution implements Crypter {
 
-	private String key;
+	private ArrayList<Character> alphabet;
+	private ArrayList<Character> keyList;
 
 	Function<String, String> encryp = (x) -> {
-		x = x.toUpperCase();
-		String erg="";
-		for (int i = 0; i < x.length(); i++) {
-		 erg+=	key.charAt( x.charAt(i) -65 );	
-		}	
-		return erg;
+		String str = "";
+		int tmp = -1;
+		for (Character c : x.toCharArray()) {
+			tmp = this.alphabet.indexOf(c);
+			if (tmp > 0) {
+				str += this.keyList.get(tmp);
+			}
+		}
+		return str;
 	};
+
 	Function<String, String> decryp = (x) -> {
-		String erg="";
-		for (int i = 0; i < x.length(); i++) {
-			 erg+= (char) (key.indexOf(x.charAt(i))+65);		
-			}		
-			return erg;
+		String str = "";
+		for (Character c : x.toCharArray()) {
+			str += this.alphabet.get(this.keyList.indexOf(c));
+		}
+		return str;
 	};
+
 	public CrypterSubstitution(String key) {
-		this.key = key;
+		this.alphabet = this.fillAlphabet();
+	    this.keyList  = this.fillKeyList(key);
+	
+	}
+
+	private ArrayList<Character> fillAlphabet() {
+		ArrayList<Character> list = new ArrayList<>();
+		for (int i = 65; i < 91; i++) {
+			list.add((char) i);
+		}
+		return list;
+	}
+
+	private ArrayList<Character> fillKeyList(String key) {
+		ArrayList<Character> list = new ArrayList<>();
+		for (Character c:key.toCharArray()) {		
+			list.add(c);
+		}
+		return list;
 	}
 
 	@Override
@@ -34,10 +59,11 @@ public class CrypterSubstitution implements Crypter {
 
 	@Override
 	public List<String> encrypt(List<String> messages) throws CrypterException {
-		List<String> list = new ArrayList<>();
-		for(String msg:messages){
-			list.add(this.encrypt(msg));
+		List<String> list = new LinkedList<>();
+		for (String msg : messages) {
+			list.add(this.encryp.apply(msg));
 		}
+
 		return list;
 	}
 
@@ -48,11 +74,14 @@ public class CrypterSubstitution implements Crypter {
 
 	@Override
 	public List<String> decrypt(List<String> cypherTexte)
-	        throws CrypterException {		List<String> list = new ArrayList<>();
-			for(String msg:cypherTexte){
-				list.add(this.decrypt(msg));
-			}
-			return list;
+	        throws CrypterException {
+		List<String> list = new ArrayList<>();
+		for (String msg : cypherTexte) {
+
+			list.add(this.decryp.apply(msg));
+		}
+
+		return list;
 	}
 
 }
