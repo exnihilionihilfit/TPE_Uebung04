@@ -22,7 +22,7 @@ public class CrypterXOR implements Crypter {
 				iterator = keyDeque.iterator();
 				tmp = iterator.next();
 			}
-			erg += (char) ((int) x.charAt(i) ^ tmp);
+			erg += (char) ((int) x.charAt(i) ^ tmp );
 		}
 	
 		return erg;
