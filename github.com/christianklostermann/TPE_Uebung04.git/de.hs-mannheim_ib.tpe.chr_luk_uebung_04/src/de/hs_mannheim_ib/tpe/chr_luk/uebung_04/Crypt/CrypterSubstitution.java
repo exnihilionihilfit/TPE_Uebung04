@@ -14,9 +14,13 @@ public class CrypterSubstitution implements Crypter {
 		String str = "";
 		int tmp = -1;
 		for (Character c : x.toCharArray()) {
-			tmp = this.alphabet.indexOf(c);
-			if (tmp > 0) {
-				str += this.keyList.get(tmp);
+			if (this.alphabet.indexOf(c) > 0) {
+				tmp = this.alphabet.indexOf(c);
+				if (tmp > 0) {
+					str += this.keyList.get(tmp);
+				}
+			}else{
+				str+=c;
 			}
 		}
 		return str;
@@ -25,15 +29,19 @@ public class CrypterSubstitution implements Crypter {
 	Function<String, String> decryp = (x) -> {
 		String str = "";
 		for (Character c : x.toCharArray()) {
+			if (this.alphabet.indexOf(c) > 0) {
 			str += this.alphabet.get(this.keyList.indexOf(c));
+			}else{
+				str+=c;
+			}
 		}
 		return str;
 	};
 
 	public CrypterSubstitution(String key) {
 		this.alphabet = this.fillAlphabet();
-	    this.keyList  = this.fillKeyList(key);
-	
+		this.keyList = this.fillKeyList(key);
+
 	}
 
 	private ArrayList<Character> fillAlphabet() {
@@ -46,7 +54,7 @@ public class CrypterSubstitution implements Crypter {
 
 	private ArrayList<Character> fillKeyList(String key) {
 		ArrayList<Character> list = new ArrayList<>();
-		for (Character c:key.toCharArray()) {		
+		for (Character c : key.toCharArray()) {
 			list.add(c);
 		}
 		return list;

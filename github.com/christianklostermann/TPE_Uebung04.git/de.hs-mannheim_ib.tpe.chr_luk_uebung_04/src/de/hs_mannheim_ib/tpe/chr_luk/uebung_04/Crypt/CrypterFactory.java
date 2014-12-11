@@ -12,10 +12,8 @@ public class CrypterFactory {
 				// key nur 1 Zeichen
 				try {
 					if (key.length() > 1 && key.length() != 0) {
-						throw new IllegalKeyException("Key für Caesar > 1");
-						
+						throw new IllegalKeyException("Key für Caesar > 1");						
 					}
-
 				} catch (IllegalKeyException e) {
 					System.out.println("Key für Caesar > 1");
 					key = "A";

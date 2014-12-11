@@ -6,32 +6,32 @@ public class Null  implements Crypter{
 
 
 	public Null(String key) {
-	    // TODO Auto-generated constructor stub
+	
     }
 
 	@Override
     public String encrypt(String message) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
+	   
+	    return message;
     }
 
 	@Override
     public List<String> encrypt(List<String> messages) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
+	
+	    return messages;
     }
 
 	@Override
     public String decrypt(String cypherText) throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
+	 
+	    return cypherText;
     }
 
 	@Override
     public List<String> decrypt(List<String> cypherTexte)
             throws CrypterException {
-	    // TODO Auto-generated method stub
-	    return null;
+	
+	    return cypherTexte;
     }
 
 }

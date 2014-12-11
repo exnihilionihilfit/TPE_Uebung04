@@ -5,7 +5,7 @@ public class IllegalKeyException extends CrypterException{
 
 
 	public IllegalKeyException(String string) {
-	    // TODO Auto-generated constructor stub
+	   System.out.println(string);
     }
 
 	/**

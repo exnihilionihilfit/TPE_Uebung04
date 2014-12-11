@@ -7,7 +7,6 @@ import java.util.function.*;
 
 public class CrypterCaesar implements Crypter {
 
-
 	private ArrayList<Character> alphabet;
 	private ArrayList<Character> keyList;
 
@@ -15,9 +14,13 @@ public class CrypterCaesar implements Crypter {
 		String str = "";
 		int tmp = -1;
 		for (Character c : x.toCharArray()) {
-			tmp = this.alphabet.indexOf(c);
-			if (tmp > 0) {
-				str += this.keyList.get(tmp);
+			if (this.alphabet.indexOf(c) > 0) {
+				tmp = this.alphabet.indexOf(c);
+				if (tmp > 0) {
+					str += this.keyList.get(tmp);
+				}
+			} else {
+				str += c;
 			}
 		}
 		return str;
@@ -26,7 +29,11 @@ public class CrypterCaesar implements Crypter {
 	Function<String, String> decryp = (x) -> {
 		String str = "";
 		for (Character c : x.toCharArray()) {
-			str += this.alphabet.get(this.keyList.indexOf(c));
+			if (this.alphabet.indexOf(c) > 0) {
+				str += this.alphabet.get(this.keyList.indexOf(c));
+			} else {
+				str += c;
+			}
 		}
 		return str;
 	};
@@ -49,7 +56,7 @@ public class CrypterCaesar implements Crypter {
 
 	private void fillKeyList(char key) {
 		for (int i = 0; i < this.alphabet.size(); i++) {
-		
+
 			if (this.keyList.get(0) != key) {
 				this.keyList.add(this.keyList.remove(0));
 			}
