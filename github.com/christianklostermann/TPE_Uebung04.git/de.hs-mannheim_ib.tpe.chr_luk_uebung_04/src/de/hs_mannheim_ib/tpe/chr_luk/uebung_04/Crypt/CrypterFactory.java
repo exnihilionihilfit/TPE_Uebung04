@@ -1,8 +1,10 @@
 package de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt;
 
 public class CrypterFactory {
+	
+	
 
-	public Crypter createCrypter(CryptTypen type, String key) {
+	public static Crypter createCrypter(CryptTypen type, String key) {
 
 		if (key != null) {
 
@@ -20,9 +22,9 @@ public class CrypterFactory {
 				}
 				return new CrypterCaesar(key);
 			case NULL:
-				return new Null(key);
+				return new CrypterNull(key);
 			case REVERSE:
-				return new Reverse(key);
+				return new CrypterReverse(key);
 			case SUBSTITUTION:
 				// key nur 26 Zeichen
 				try {
@@ -38,16 +40,7 @@ public class CrypterFactory {
 				return new CrypterSubstitution(key);
 			case XOR:
 				// key nur 32 Zeichen
-				try {
-				
-					if (key.length() != 32 && key.length() != 0) {
-						throw new IllegalKeyException("Key für XOR ungleich 26");
-					}
-
-				} catch (IllegalKeyException e) {
-					System.out.println("Key für XOR ungleich 32");
-					key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@[\\]^_";
-				}
+			
 				return new CrypterXOR(key);
 			default:
 				break;
@@ -55,5 +48,11 @@ public class CrypterFactory {
 		}
 		return null;
 	}
+
+	public static Crypter createCrypter(String string, Crypter caesar) {
+	    // TODO Auto-generated method stub
+	    return null;
+    }
+
 
 }

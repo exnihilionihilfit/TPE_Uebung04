@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
-public class Reverse  implements Crypter{
+public class CrypterReverse  implements Crypter{
 	
 	Function<String, String> reverse = (x)->{
 		return new StringBuilder(x).reverse().toString();
 	};
 
-	public Reverse(String key) {
+	public CrypterReverse(String key) {
 	    
     }
 

@@ -2,10 +2,10 @@ package de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt;
 
 import java.util.List;
 
-public class Null  implements Crypter{
+public class CrypterNull  implements Crypter{
 
 
-	public Null(String key) {
+	public CrypterNull(String key) {
 	
     }
 

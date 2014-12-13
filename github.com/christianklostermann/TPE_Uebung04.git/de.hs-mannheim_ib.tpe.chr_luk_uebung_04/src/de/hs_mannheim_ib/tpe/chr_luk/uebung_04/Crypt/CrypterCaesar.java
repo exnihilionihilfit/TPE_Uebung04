@@ -14,9 +14,9 @@ public class CrypterCaesar implements Crypter {
 		String str = "";
 		int tmp = -1;
 		for (Character c : x.toCharArray()) {
-			if (this.alphabet.indexOf(c) > 0) {
+			if (this.alphabet.indexOf(c) >= 0) {
 				tmp = this.alphabet.indexOf(c);
-				if (tmp > 0) {
+				if (tmp >= 0) {
 					str += this.keyList.get(tmp);
 				}
 			} else {
@@ -29,7 +29,7 @@ public class CrypterCaesar implements Crypter {
 	Function<String, String> decryp = (x) -> {
 		String str = "";
 		for (Character c : x.toCharArray()) {
-			if (this.alphabet.indexOf(c) > 0) {
+			if (this.alphabet.indexOf(c) >= 0) {
 				str += this.alphabet.get(this.keyList.indexOf(c));
 			} else {
 				str += c;
@@ -61,9 +61,7 @@ public class CrypterCaesar implements Crypter {
 				this.keyList.add(this.keyList.remove(0));
 			}
 		}
-
 	}
-
 	@Override
 	public String encrypt(String message) throws CrypterException {
 		return this.encryp.apply(message);
@@ -75,10 +73,8 @@ public class CrypterCaesar implements Crypter {
 		for (String msg : messages) {
 			list.add(this.encryp.apply(msg));
 		}
-
 		return list;
 	}
-
 	@Override
 	public String decrypt(String cypherText) throws CrypterException {
 		return this.decryp.apply(cypherText);

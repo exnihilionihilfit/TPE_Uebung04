@@ -12,6 +12,8 @@ import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterFactory;
 
 public class JUnit {
 
+	private String text = "QOZEG]A[UXDKZIZLAB\\NUQIO^^RXYHADV[EFFJ\\[\\U_]YDVZABDZT\\V\\SKB@X";
+
 	public void test() {
 		CrypterFactory crypFac = new CrypterFactory();
 		Crypter cryp = crypFac.createCrypter(CryptTypen.CAESAR, "B");
@@ -30,32 +32,44 @@ public class JUnit {
 		}
 	}
 
-	public void testCrypSub() {
+	@Test
+	public void testCrypSub() throws CrypterException {
+		List<String> testList = new ArrayList<>();
+		testList.add(this.text);	
+		
 		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
-		        "BCDEFGHIJKLMNOPQRSTUVWXYZA");
-		System.out.println("Sub");
-		try {
-			List<String> testList = new ArrayList<>();
-			testList.add("AAAHAB");
-			testList.add("Baum");
-			 System.out.println(cryp.encrypt("Baum"));
-			String tmp = cryp.encrypt("Baum");
-			 System.out.println(cryp.decrypt(tmp));
-		} catch (CrypterException e) {
-			System.out.println("test");
-			e.printStackTrace();
-		}
+		Crypter crypS = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
+		        "MNBVCXYLKJHGFDSAPOIUZTREWQ");
+		Crypter crypC = crypFac.createCrypter(CryptTypen.CAESAR, "L");
+		Crypter crypX = crypFac.createCrypter(CryptTypen.XOR,
+		        "IAMTHEONEWHOKNOCKS");
+		Crypter crypR = crypFac.createCrypter(CryptTypen.REVERSE, "");
+		
+		
+		
+		text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		
+List<String> list = new ArrayList<>();
+list.add(text);
+		list = crypC.encrypt(list);
+		
+		list = crypC.decrypt(list);
+
+		
+		
+	
+	   
+
+		System.out.println(list.toString());
 	}
 
-@Test
 	public void testCrypXor() {
 		CrypterFactory crypFac = new CrypterFactory();
 		Crypter cryp = crypFac.createCrypter(CryptTypen.XOR,
-		        "BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_");
+		        "IAMTHEONEWHOKNOCKS");
 
 		try {
-			String test = cryp.encrypt("BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_iterator = keyDeque.iterator();");
+			String test = cryp.encrypt("HALLO DAS ");
 			System.out.println(test);
 			System.out.println(cryp.decrypt(test));
 		} catch (CrypterException e) {
