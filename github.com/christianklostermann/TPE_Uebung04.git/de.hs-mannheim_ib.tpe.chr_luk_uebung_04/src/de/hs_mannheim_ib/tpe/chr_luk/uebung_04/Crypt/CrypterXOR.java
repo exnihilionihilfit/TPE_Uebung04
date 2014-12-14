@@ -33,8 +33,9 @@ public class CrypterXOR implements Crypter {
 
 				tmp = alphabet.indexOf((char) tmp);
 				tmp2 = alphabet.indexOf(x.charAt(i));
-
-				erg += alphabet.get(tmp ^ tmp2);
+			
+					erg += alphabet.get((tmp ^ tmp2)-26);
+				
 			} else {
 				erg += x.charAt(i);
 			}
@@ -62,11 +63,15 @@ public class CrypterXOR implements Crypter {
 
 				tmp = alphabet.indexOf((char) tmp);
 				tmp2 = alphabet.indexOf(x.charAt(i));
-		
+
+				if ((tmp ^ tmp2) < 26) {
 					erg += alphabet.get(tmp ^ tmp2);
-			
+				} else {
+					erg += alphabet.get((tmp ^ tmp2)-26);
+				}
 			} else {
 				erg += x.charAt(i);
+
 			}
 		}
 
@@ -80,7 +85,6 @@ public class CrypterXOR implements Crypter {
 		for (int i = 65; i < 91; i++) {
 			list.add((char) i);
 		}
-
 		list.add('[');
 		list.add('\\');
 		list.add(']');
@@ -121,7 +125,7 @@ public class CrypterXOR implements Crypter {
 
 	@Override
 	public String decrypt(String cypherText) throws CrypterException {
-		return this.cryp.apply(cypherText);
+		return this.decryp.apply(cypherText);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterFactory;
 
 public class JUnit {
 
-	private String text = "QOZEG]A[UXDKZIZLAB\\NUQIO^^RXYHADV[EFFJ\\[\\U_]YDVZABDZT\\V\\SKB@X";
+	private String text = "QOZEG]A[UXDKZIZLAB\\NUQIO^^RXYHADV[EFFJ\\\\[\\U_]YDVZABDZT\\V\\SKB@X";
 
 	public void test() {
 		CrypterFactory crypFac = new CrypterFactory();
@@ -35,30 +35,23 @@ public class JUnit {
 	@Test
 	public void testCrypSub() throws CrypterException {
 		List<String> testList = new ArrayList<>();
-		testList.add(this.text);	
-		
+		testList.add(this.text);
+
 		CrypterFactory crypFac = new CrypterFactory();
 		Crypter crypS = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
 		        "MNBVCXYLKJHGFDSAPOIUZTREWQ");
-		Crypter crypC = crypFac.createCrypter(CryptTypen.CAESAR, "L");
+		Crypter crypC = crypFac.createCrypter(CryptTypen.CAESAR, "M");
 		Crypter crypX = crypFac.createCrypter(CryptTypen.XOR,
 		        "IAMTHEONEWHOKNOCKS");
 		Crypter crypR = crypFac.createCrypter(CryptTypen.REVERSE, "");
-		
-		
-		
-		text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		
-List<String> list = new ArrayList<>();
-list.add(text);
-		list = crypC.encrypt(list);
-		
-		list = crypC.decrypt(list);
 
+		List<String> list = new ArrayList<>();
+		list.add(text);
 		
-		
-	
-	   
+		list = crypX.decrypt(list);
+		list = crypR.decrypt(list);
+		list = crypC.decrypt(list);
+		list = crypS.decrypt(list);
 
 		System.out.println(list.toString());
 	}
