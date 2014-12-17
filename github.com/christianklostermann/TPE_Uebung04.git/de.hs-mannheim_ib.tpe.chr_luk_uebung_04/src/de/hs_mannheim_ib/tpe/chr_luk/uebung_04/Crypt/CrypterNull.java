@@ -10,14 +10,12 @@ public class CrypterNull  implements Crypter{
     }
 
 	@Override
-    public String encrypt(String message) throws CrypterException {
-	   
+    public String encrypt(String message) throws CrypterException {	   
 	    return message;
     }
 
 	@Override
-    public List<String> encrypt(List<String> messages) throws CrypterException {
-	
+    public List<String> encrypt(List<String> messages) throws CrypterException {	
 	    return messages;
     }
 

@@ -13,15 +13,15 @@ import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterFactory;
 public class JUnit {
 
 	private String text = "QOZEG]A[UXDKZIZLAB\\NUQIO^^RXYHADV[EFFJ\\\\[\\U_]YDVZABDZT\\V\\SKB@X";
-
+@Test
 	public void test() {
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.CAESAR, "B");
+
+		Crypter cryp = CrypterFactory.createCrypter(CryptTypen.CAESAR, "B");
 
 		try {
 			System.out.println(cryp.encrypt("HALLO"));
 			List<String> testList = new ArrayList<>();
-			testList.add("Blub");
+			testList.add("BLUB");
 			testList.add("ENIGMA");
 			List<String> cryptoList = cryp.encrypt(testList);
 			System.out.println(cryptoList);
@@ -33,17 +33,17 @@ public class JUnit {
 	}
 
 	@Test
-	public void testCrypSub() throws CrypterException {
+	public void testEnsch() throws CrypterException {
 		List<String> testList = new ArrayList<>();
 		testList.add(this.text);
 
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter crypS = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
+
+		Crypter crypS = CrypterFactory.createCrypter(CryptTypen.SUBSTITUTION,
 		        "MNBVCXYLKJHGFDSAPOIUZTREWQ");
-		Crypter crypC = crypFac.createCrypter(CryptTypen.CAESAR, "M");
-		Crypter crypX = crypFac.createCrypter(CryptTypen.XOR,
+		Crypter crypC = CrypterFactory.createCrypter(CryptTypen.CAESAR, "M");
+		Crypter crypX = CrypterFactory.createCrypter(CryptTypen.XOR,
 		        "IAMTHEONEWHOKNOCKS");
-		Crypter crypR = crypFac.createCrypter(CryptTypen.REVERSE, "");
+		Crypter crypR = CrypterFactory.createCrypter(CryptTypen.REVERSE, "");
 
 		List<String> list = new ArrayList<>();
 		list.add(text);
@@ -57,8 +57,8 @@ public class JUnit {
 	}
 
 	public void testCrypXor() {
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.XOR,
+	
+		Crypter cryp = CrypterFactory.createCrypter(CryptTypen.XOR,
 		        "IAMTHEONEWHOKNOCKS");
 
 		try {

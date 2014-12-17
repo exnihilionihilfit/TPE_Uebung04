@@ -23,60 +23,21 @@ public class CrypterXOR implements Crypter {
 		for (int i = 0; i < x.length(); i++) {
 
 			if (this.alphabet.contains(x.charAt(i))) {
-
 				if (iterator.hasNext()) {
 					tmp = iterator.next();
 				} else {
 					iterator = keyDeque.iterator();
 					tmp = iterator.next();
 				}
-
 				tmp = alphabet.indexOf((char) tmp);
-				tmp2 = alphabet.indexOf(x.charAt(i));
-			
-					erg += alphabet.get((tmp ^ tmp2)-26);
-				
+				tmp2 = alphabet.indexOf(x.charAt(i));			
+					erg += alphabet.get((tmp ^ tmp2));				
 			} else {
 				erg += x.charAt(i);
 			}
 		}
-
 		return erg;
-	};
-
-	Function<String, String> decryp = (x) -> {
-		Iterator<Integer> iterator = keyDeque.iterator();
-		String erg = "";
-		int tmp = -1;
-		int tmp2 = -1;
-
-		for (int i = 0; i < x.length(); i++) {
-
-			if (this.alphabet.contains(x.charAt(i))) {
-
-				if (iterator.hasNext()) {
-					tmp = iterator.next();
-				} else {
-					iterator = keyDeque.iterator();
-					tmp = iterator.next();
-				}
-
-				tmp = alphabet.indexOf((char) tmp);
-				tmp2 = alphabet.indexOf(x.charAt(i));
-
-				if ((tmp ^ tmp2) < 26) {
-					erg += alphabet.get(tmp ^ tmp2);
-				} else {
-					erg += alphabet.get((tmp ^ tmp2)-26);
-				}
-			} else {
-				erg += x.charAt(i);
-
-			}
-		}
-
-		return erg;
-	};
+	};	
 
 	private ArrayList<Character> fillAlphabet() {
 		ArrayList<Character> list = new ArrayList<>();
@@ -125,7 +86,7 @@ public class CrypterXOR implements Crypter {
 
 	@Override
 	public String decrypt(String cypherText) throws CrypterException {
-		return this.decryp.apply(cypherText);
+		return this.cryp.apply(cypherText);
 	}
 
 	@Override
