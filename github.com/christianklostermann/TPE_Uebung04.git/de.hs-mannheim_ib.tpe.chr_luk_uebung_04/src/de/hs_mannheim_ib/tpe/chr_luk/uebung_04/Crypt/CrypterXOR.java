@@ -29,16 +29,17 @@ public class CrypterXOR implements Crypter {
 					iterator = keyDeque.iterator();
 					tmp = iterator.next();
 				}
-				tmp = alphabet.indexOf((char) tmp);
+				tmp  = alphabet.indexOf((char) tmp);
 				tmp2 = alphabet.indexOf(x.charAt(i));			
-					erg += alphabet.get((tmp ^ tmp2));				
+				erg += alphabet.get((tmp ^ tmp2));	
+					
 			} else {
 				erg += x.charAt(i);
 			}
 		}
 		return erg;
 	};	
-
+	
 	private ArrayList<Character> fillAlphabet() {
 		ArrayList<Character> list = new ArrayList<>();
 

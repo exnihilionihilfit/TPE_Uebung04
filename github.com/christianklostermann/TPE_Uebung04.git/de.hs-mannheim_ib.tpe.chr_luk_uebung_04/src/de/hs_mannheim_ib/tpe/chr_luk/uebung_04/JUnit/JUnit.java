@@ -1,5 +1,7 @@
 package de.hs_mannheim_ib.tpe.chr_luk.uebung_04.JUnit;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,20 +56,30 @@ public class JUnit {
 		list = crypS.decrypt(list);
 
 		System.out.println(list.toString());
+		
+		String text = "HALLO";	
+		assertEquals(crypX.encrypt(text), "A@AXG");
+		assertEquals(crypX.decrypt(crypX.encrypt(text)), text );
+		
+		 text = "HALLO";	
+			assertEquals(crypC.encrypt(text), "TMXXA");
+			assertEquals(crypC.decrypt(crypC.encrypt(text)), text );
+		
+		
 	}
-
+    @Test
 	public void testCrypXor() {
 	
 		Crypter cryp = CrypterFactory.createCrypter(CryptTypen.XOR,
 		        "IAMTHEONEWHOKNOCKS");
-
+	
 		try {
-			String test = cryp.encrypt("HALLO DAS ");
-			System.out.println(test);
-			System.out.println(cryp.decrypt(test));
+			String text = "HALLO";	
+			assertEquals(cryp.encrypt(text), "A@AXG");
+			assertEquals(cryp.decrypt(cryp.encrypt(text)), text );
+			
 		} catch (CrypterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("FEHLER beim Cryptographieren!");
 		}
 	}
 }

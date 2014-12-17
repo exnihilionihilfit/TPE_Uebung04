@@ -42,7 +42,7 @@ public class CrypterFactory {
 				// / key nur 26 Zeichen
 				try {
 
-					if (key.length() != 0) {
+					if (key.length() <= 0) {
 						throw new IllegalKeyException(
 						        "Key ist unzulässige, zu wenige Zeichen");
 					}
