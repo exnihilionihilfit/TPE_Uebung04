@@ -1,0 +1,19 @@
+tree 781dc18def0b78c49fed02148d786971eee643dc
+parent 1dec2fad8338e56a52e5943f071378ece779b00e
+author christian <christian-klostermann@web.de> 1417639485 +0100
+committer christian <christian-klostermann@web.de> 1417713026 +0100
+
+CrypterCeasar 
+
+komplet überabeitet. Zwei Listen (Key und Alphabet) klartext wird char
+weiße eingelesen in Alphabet gesucht und durch die stelle in der Liste
+(index) durch den gleichen Index in der Key-Liste ersetzt.
+
+CryptSubstitution
+
+sehr redudant zu Caesar, kleine abeweichung, vererbung ist noch zu impl.
+
+CrypXor
+
+auch überabeitet, verwendung von Deque und Iterartor um Key endlos zu
+druchlaufen.
