@@ -12,9 +12,11 @@ import de.hs_mannheim_ib.tpe.chr_luk.uebung_04.Crypt.CrypterFactory;
 
 public class JUnit {
 
+	private String text = "QOZEG]A[UXDKZIZLAB\\NUQIO^^RXYHADV[EFFJ\\\\[\\U_]YDVZABDZT\\V\\SKB@X";
+@Test
 	public void test() {
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.CAESAR, "B");
+
+		Crypter cryp = CrypterFactory.createCrypter(CryptTypen.CAESAR, "B");
 
 		try {
 			System.out.println(cryp.encrypt("HALLO"));
@@ -31,32 +33,36 @@ public class JUnit {
 	}
 
 	@Test
-	public void testCrypSub() {
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.SUBSTITUTION,
-		        "BCDEFGHIJKLMNOPQRSTUVWXYZA");
-		System.out.println("Sub");
-		try {
-			List<String> testList = new ArrayList<>();
-			testList.add("AAAHAB");
-			testList.add("Baum");
-			// System.out.println(cryp.encrypt("Baum"));
-			String tmp = cryp.encrypt("Baum");
-			// System.out.println(cryp.decrypt(tmp));
-		} catch (CrypterException e) {
-			System.out.println("test");
-			e.printStackTrace();
-		}
+	public void testEnsch() throws CrypterException {
+		List<String> testList = new ArrayList<>();
+		testList.add(this.text);
+
+
+		Crypter crypS = CrypterFactory.createCrypter(CryptTypen.SUBSTITUTION,
+		        "MNBVCXYLKJHGFDSAPOIUZTREWQ");
+		Crypter crypC = CrypterFactory.createCrypter(CryptTypen.CAESAR, "M");
+		Crypter crypX = CrypterFactory.createCrypter(CryptTypen.XOR,
+		        "IAMTHEONEWHOKNOCKS");
+		Crypter crypR = CrypterFactory.createCrypter(CryptTypen.REVERSE, "");
+
+		List<String> list = new ArrayList<>();
+		list.add(text);
+		
+		list = crypX.decrypt(list);
+		list = crypR.decrypt(list);
+		list = crypC.decrypt(list);
+		list = crypS.decrypt(list);
+
+		System.out.println(list.toString());
 	}
 
-	@Test
 	public void testCrypXor() {
-		CrypterFactory crypFac = new CrypterFactory();
-		Crypter cryp = crypFac.createCrypter(CryptTypen.XOR,
-		        "BCDEFGHIJKLMNOPQRSTUVWXYZA@[\\]^_");
+	
+		Crypter cryp = CrypterFactory.createCrypter(CryptTypen.XOR,
+		        "IAMTHEONEWHOKNOCKS");
 
 		try {
-			String test = cryp.encrypt("Three  to die,One for the Dark Lord on his dark throneIn the Land of Mordor where the Shadows lie.One Ring to rule them all, One Ring to find them,One Ring to bring them all and in the darkness bind themIn the Land of Mordor where the Shadows lie.");
+			String test = cryp.encrypt("HALLO DAS ");
 			System.out.println(test);
 			System.out.println(cryp.decrypt(test));
 		} catch (CrypterException e) {
